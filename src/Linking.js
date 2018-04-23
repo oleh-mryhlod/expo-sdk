@@ -21,9 +21,7 @@ if (!HOST_URI && !USES_CUSTOM_SCHEME) {
   HOST_URI = _removeScheme(Constants.linkingUri).replace(/\/--($|\/.*$)/, '');
 }
 const IS_EXPO_HOSTED =
-  HOST_URI &&
-  !USES_CUSTOM_SCHEME &&
-  /^(.*\.)?(expo\.io|exp\.host|exp\.direct|expo\.test)(:.*)?(\/.*)?$/.test(HOST_URI);
+  HOST_URI && /^(.*\.)?(expo\.io|exp\.host|exp\.direct|expo\.test)(:.*)?(\/.*)?$/.test(HOST_URI);
 
 function _removeScheme(url) {
   return url.replace(/^.*:\/\//, '');
@@ -56,7 +54,7 @@ function makeUrl(path: ?string, queryParams: ?Object = {}): string {
   }
 
   if (path) {
-    if (IS_EXPO_HOSTED) {
+    if (IS_EXPO_HOSTED && hostUri) {
       path = `/--/${_removeLeadingSlash(path)}`;
     }
 

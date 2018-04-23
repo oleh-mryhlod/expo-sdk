@@ -142,7 +142,13 @@ export async function createAssetAsync(localUri: string): Promise<Asset> {
   if (!localUri || typeof localUri !== 'string') {
     throw new Error('Invalid argument "localUri". It must be a string!');
   }
-  return MediaLibrary.createAssetAsync(localUri);
+  const asset = await MediaLibrary.createAssetAsync(localUri);
+
+  if (Array.isArray(asset)) {
+    // Android returns an array with asset, we need to pick the first item
+    return asset[0];
+  }
+  return asset;
 }
 
 export async function addAssetsToAlbumAsync(

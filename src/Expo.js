@@ -3,8 +3,12 @@ import './environment/validate';
 import './environment/logging';
 import './Location'; // polyfill navigator.geolocation
 
-import { NativeModules } from 'react-native';
+import { NativeModules, YellowBox } from 'react-native';
 import Constants from './Constants';
+
+// ignore annoying deprecation warnings stemming from react-native JS internals
+// TODO: remove this once there are no more calls to isMounted() in react-native
+YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
 
 if (typeof Constants.manifest.env === 'object') {
   Object.assign(process.env, Constants.manifest.env);

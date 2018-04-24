@@ -4,6 +4,7 @@ import { Platform } from 'react-native';
 import qs from 'qs';
 
 import Constants from './Constants';
+import Linking from './Linking';
 import WebBrowser from './WebBrowser';
 
 type AuthSessionOptions = {
@@ -112,7 +113,7 @@ function getRedirectUrl(): string {
 }
 
 function getDefaultReturnUrl(): string {
-  return `${Constants.linkingUrl}expo-auth-session`;
+  return Linking.makeUrl('expo-auth-session');
 }
 
 function parseUrl(url: string): { errorCode: ?string, params: Object } {

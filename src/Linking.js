@@ -21,7 +21,9 @@ if (!HOST_URI && !USES_CUSTOM_SCHEME) {
   HOST_URI = _removeScheme(Constants.linkingUri).replace(/\/--($|\/.*$)/, '');
 }
 const IS_EXPO_HOSTED =
-  HOST_URI && /^(.*\.)?(expo\.io|exp\.host|exp\.direct|expo\.test)(:.*)?(\/.*)?$/.test(HOST_URI);
+  HOST_URI &&
+  (/^(.*\.)?(expo\.io|exp\.host|exp\.direct|expo\.test)(:.*)?(\/.*)?$/.test(HOST_URI) ||
+    manifest.developer);
 
 function _removeScheme(url) {
   return url.replace(/^.*:\/\//, '');
@@ -49,7 +51,7 @@ function makeUrl(path: ?string, queryParams: ?Object = {}): string {
   }
 
   let hostUri = HOST_URI || '';
-  if (USES_CUSTOM_SCHEME && (IS_EXPO_HOSTED || manifest.developer)) {
+  if (USES_CUSTOM_SCHEME && IS_EXPO_HOSTED) {
     hostUri = '';
   }
 
@@ -64,7 +66,7 @@ function makeUrl(path: ?string, queryParams: ?Object = {}): string {
       path = path.substr(1);
     }
   } else {
-    path = IS_EXPO_HOSTED && hostUri ? '/--/' : '';
+    path = '';
   }
 
   let queryString = '';

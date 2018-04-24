@@ -64,7 +64,7 @@ function makeUrl(path: ?string, queryParams: ?Object = {}): string {
       path = path.substr(1);
     }
   } else {
-    path = '';
+    path = IS_EXPO_HOSTED && hostUri ? '/--/' : '';
   }
 
   let queryString = '';

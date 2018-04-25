@@ -1,6 +1,6 @@
 {
   "name": "expo",
-  "version": "27.0.0-rc.0",
+  "version": "27.0.1",
   "description": "The Expo SDK",
   "main": "src/Expo.js",
   "files": [
@@ -66,11 +66,11 @@
     "@expo/npm-proofread": "^1.0.1",
     "eslint": "^4.10.0",
     "eslint-config-universe": "^1.0.7",
-    "flow-bin": "^0.65.0",
-    "jest-expo": "^26.0.0-alpha.1",
+    "flow-bin": "^0.67.1",
+    "jest-expo": "^27.0.0",
     "prettier": "^1.7.4",
-    "react": "^16.3.0-alpha.2",
-    "react-native": "expo/react-native#sdk-26.0.0",
-    "react-test-renderer": "^16.3.0-alpha.2"
+    "react": "^16.3.1",
+    "react-native": "expo/react-native#sdk-27.0.0",
+    "react-test-renderer": "^16.3.1"
   }
 }

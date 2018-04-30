@@ -109,3 +109,11 @@ export function startActivityAsync(activity: string, data: ?Object = null): Prom
     return Promise.reject(new Error('Unsupported platform'));
   }
 }
+
+export function startActivityWithUriAsync(activity: string, uri: ?string = null): Promise<boolean> {
+  if (Platform.OS === 'android') {
+    return NativeModules.ExponentIntentLauncher.startActivityWithUri(activity, uri);
+  } else {
+    return Promise.reject(new Error('Unsupported platform'));
+  }
+}

@@ -102,17 +102,13 @@ export const ACTION_ZEN_MODE_SCHEDULE_RULE_SETTINGS =
   'android.settings.ZEN_MODE_SCHEDULE_RULE_SETTINGS';
 export const ACTION_ZEN_MODE_SETTINGS = 'android.settings.ZEN_MODE_SETTINGS';
 
-export function startActivityAsync(activity: string, data: ?Object = null): Promise<boolean> {
+export function startActivityAsync(
+  activity: string,
+  data: ?Object = null,
+  uri: ?string = null
+): Promise<boolean> {
   if (Platform.OS === 'android') {
-    return NativeModules.ExponentIntentLauncher.startActivity(activity, data);
-  } else {
-    return Promise.reject(new Error('Unsupported platform'));
-  }
-}
-
-export function startActivityWithUriAsync(activity: string, uri: ?string = null): Promise<boolean> {
-  if (Platform.OS === 'android') {
-    return NativeModules.ExponentIntentLauncher.startActivityWithUri(activity, uri);
+    return NativeModules.ExponentIntentLauncher.startActivity(activity, data, uri);
   } else {
     return Promise.reject(new Error('Unsupported platform'));
   }
